@@ -21,7 +21,20 @@ public class DaoNguocCacPhanTuCuaMang {
             array[i]=scanner.nextInt();
             i++;
         }
-
+        System.out.printf("%-20s%s", "Elements in Array","");
+        for(int j=0;j<array.length;j++){
+            System.out.println(array[j] + "\t");
+        }
+        for(int j=0;j< array.length/2;j++){
+            int temp;
+            temp = array[j];
+            array[j]=array[size-1-j];
+            array[size-1-j]=temp;
+        }
+        System.out.printf("%-20s%s", "Reverse Array: ","");
+        for (int j=0; j<array.length;j++){
+            System.out.println(array[j] + "\t");
+        }
 
     }
 
