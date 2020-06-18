@@ -54,6 +54,10 @@ public class DemergingQueue_cach2 {
                     '}';
         }
     }
+    /**demo chu thich
+
+     */
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Queue<Employee> male = new LinkedList<>();
@@ -65,7 +69,7 @@ public class DemergingQueue_cach2 {
         for(int i=0;i<size;i++){
             System.out.println("input name");
             String name = scanner.nextLine();
-//            employees[i] = new Employee()
+//           employees[i] = new Employee()
             System.out.println("input sex");
             String sex = scanner.nextLine();
 //            employees[i].sex=sex;
@@ -83,10 +87,10 @@ public class DemergingQueue_cach2 {
             }
         }
         while (!male.isEmpty()){
-            System.out.println(male.remove().toString());
+            System.out.println(male.remove());
         }
         while (!female.isEmpty()){
-            System.out.println(female.remove().toString());
+            System.out.println(female.remove());
         }
 
     }
