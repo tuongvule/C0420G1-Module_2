@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
-public class Student implements Comparable<Student> {
+public class Student {
     private String name;
     private int age;
 
@@ -39,24 +39,24 @@ public class Student implements Comparable<Student> {
                 ", age=" + age +
                 '}' + "\n";
     }
-//
+
 //    @Override
 //    public int compareTo(Student student) {
 ////        return this.getAge()-student.getAge();//sắp xếp theo tuổi
 ////        return student.getName().compareTo(this.getName());// sắp xếp theo tên dcba
 //        return this.getName().compareTo(student.getName());// sắp xếp theo tên abcd
 //    }
-
-    public static void main(String[] args) {
-        ArrayList<Student> listStudent = new ArrayList<Student>();
-        Student student1 = new Student("Tường", 23);
-        listStudent.add(student1);
-        Student student2 = new Student("Thịnh",25);
-        listStudent.add(student2);
-        Student student3 = new Student("vu",24);
-        listStudent.add(student3);
-        Collections.sort(listStudent);
-        System.out.println(listStudent);
-    }
+//
+//    public static void main(String[] args) {
+//        ArrayList<Student> listStudent = new ArrayList<Student>();
+//        Student student1 = new Student("Tường", 23);
+//        listStudent.add(student1);
+//        Student student2 = new Student("Thịnh",25);
+//        listStudent.add(student2);
+//        Student student3 = new Student("vu",24);
+//        listStudent.add(student3);
+//        Collections.sort(listStudent);
+//        System.out.println(listStudent);
+//    }
 
 }
