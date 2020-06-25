@@ -1,7 +1,5 @@
 package b_loop.Practice;
-
 import java.util.Scanner;
-
 public class CheckPrimeNumber_CachKhac {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -26,6 +24,5 @@ public class CheckPrimeNumber_CachKhac {
                 System.out.println(number + " is a prime");
             }
         }
-
     }
 }

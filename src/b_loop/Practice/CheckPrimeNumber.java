@@ -1,7 +1,5 @@
 package b_loop.Practice;
-
 import java.util.Scanner;
-
 public class CheckPrimeNumber {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -24,7 +22,5 @@ public class CheckPrimeNumber {
             else
                 System.out.println(number + " is not a prime");
         }
-
-        }
-
+    }
 }

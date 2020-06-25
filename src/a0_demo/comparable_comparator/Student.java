@@ -1,9 +1,9 @@
-package a0_demo;
+package a0_demo.comparable_comparator;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-
+//thêm dòng lệnh này vào sau class Student: implements Comparable<Student>
 public class Student {
     private String name;
     private int age;
