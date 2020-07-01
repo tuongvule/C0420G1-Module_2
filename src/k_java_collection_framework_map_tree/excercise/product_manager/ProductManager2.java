@@ -5,7 +5,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ProductManager2 {
-        static List<Product2> listProduct2 = new ArrayList<Product2>();
+    static List<Product2> listProduct2 = new ArrayList<Product2>();
+
     public void addProduct() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Input ID: ");
@@ -18,11 +19,12 @@ public class ProductManager2 {
         listProduct2.add(sp);
         System.out.println("List of Products: ");
         for (int i = 0; i < listProduct2.size(); i++) {
-            System.out.println("ID: "+ listProduct2.get(i).getId() + ", name: " + listProduct2.get(i).getName() + " Price: " + listProduct2.get(i).getPrice() + "USD");
+            System.out.println("ID: " + listProduct2.get(i).getId() + ", name: " + listProduct2.get(i).getName() + " Price: " + listProduct2.get(i).getPrice() + "USD");
         }
         System.out.println("-------------------------");
 
     }
+
     public static void editProduct() {
         Scanner sc = new Scanner(System.in);
         System.out.println();
@@ -37,10 +39,11 @@ public class ProductManager2 {
         }
         System.out.println("List of product ");
         for (int i = 0; i < listProduct2.size(); i++) {
-            System.out.println("ID: "+ listProduct2.get(i).getId() + ", name: " + listProduct2.get(i).getName() + ", Price: " + listProduct2.get(i).getPrice() + "USD");
+            System.out.println("ID: " + listProduct2.get(i).getId() + ", name: " + listProduct2.get(i).getName() + ", Price: " + listProduct2.get(i).getPrice() + "USD");
         }
         System.out.println("-------------------------");
     }
+
     public static void deleteProduct() {
         Scanner sc = new Scanner(System.in);
         System.out.println();
@@ -57,6 +60,7 @@ public class ProductManager2 {
         }
         System.out.println("-------------------------");
     }
+
     public static void displayProduct() {
         System.out.println();
         System.out.println("Danh sách sản phẩm: ");
@@ -65,6 +69,7 @@ public class ProductManager2 {
         }
         System.out.println("-------------------------");
     }
+
     public static void findProduct() {
         System.out.println();
         Scanner sc = new Scanner(System.in);
@@ -78,48 +83,50 @@ public class ProductManager2 {
         }
         System.out.println("-------------------------");
     }
-//
-//    public static void sortIncreasePrice() {
-//        boolean needNextPass = true;
-//        for (int k = 1; k < listProduct2.size() && needNextPass; k++) {
-//            needNextPass = false;
-//            for (int i = 0; i < listProduct2.size() - k; i++) {
-//                if (listProduct2.get(i).getPrice() > listProduct2.get(i + 1).getPrice()) {
-//                    Product2 temp = listProduct2.get(i);
-//                    listProduct2.set(i, listProduct2.get(i + 1));
-//                    listProduct2.set(i + 1, temp);
-//                    needNextPass = true;
-//                }
-//            }
-//        }
-//        System.out.println("Danh sách sản phẩm: ");
-//        for (int i = 0; i < listProduct2.size(); i++) {
-//            System.out.println(listProduct2.get(i).getId() + ". " + listProduct2.get(i).getName() + ": " + listProduct2.get(i).getPrice() + "đ");
-//        }
-//        System.out.println("-------------------------");
-//    }
-//
-//    public static void sortDecreasePrice() {
-//        boolean needNextPass = true;
-//        for (int k = 1; k < listProduct2.size() && needNextPass; k++) {
-//            needNextPass = false;
-//            for (int i = 0; i < listProduct2.size() - k; i++) {
-//                if (listProduct2.get(i).getPrice() < listProduct2.get(i + 1).getPrice()) {
-//                    Product2 temp = listProduct2.get(i);
-//                    listProduct2.set(i, listProduct2.get(i + 1));
-//                    listProduct2.set(i + 1, temp);
-//                    needNextPass = true;
-//                }
-//            }
-//        }
-//        System.out.println("Danh sách sản phẩm: ");
-//        for (int i = 0; i < listProduct2.size(); i++) {
-//            System.out.println(listProduct2.get(i).getId() + ". " + listProduct2.get(i).getName() + ": " + listProduct2.get(i).getPrice() + "đ");
-//        }
-//        System.out.println("-------------------------");
-//    }
 
+    public static void sortIncreasePrice() {
+        boolean needNextPass = true;
+        for (int k = 1; k < listProduct2.size() && needNextPass; k++) {
+            needNextPass = false;
+            for (int i = 0; i < listProduct2.size() - k; i++) {
+                if (listProduct2.get(i).getPrice() > listProduct2.get(i + 1).getPrice()) {
+                    Product2 temp = listProduct2.get(i);
+                    listProduct2.set(i, listProduct2.get(i + 1));
+                    listProduct2.set(i + 1, temp);
+                    needNextPass = true;
+                }
+            }
+        }
 
+        System.out.println("Danh sách sản phẩm: ");
+        for (int i = 0; i < listProduct2.size(); i++) {
+            System.out.println(listProduct2.get(i).getId() + ". " + listProduct2.get(i).getName() + ": " + listProduct2.get(i).getPrice() + "đ");
+        }
+        System.out.println("-------------------------");
+    }
 
-
+    public static void sortDecreasePrice() {
+        boolean needNextPass = true;
+        for (int k = 1; k < listProduct2.size() && needNextPass; k++) {
+            needNextPass = false;
+            for (int i = 0; i < listProduct2.size() - k; i++) {
+                if (listProduct2.get(i).getPrice() < listProduct2.get(i + 1).getPrice()) {
+                    Product2 temp = listProduct2.get(i);
+                    listProduct2.set(i, listProduct2.get(i + 1));
+                    listProduct2.set(i + 1, temp);
+                    needNextPass = true;
+                }
+            }
+        }
+        System.out.println("Danh sách sản phẩm: ");
+        for (int i = 0; i < listProduct2.size(); i++) {
+            System.out.println(listProduct2.get(i).getId() + ". " + listProduct2.get(i).getName() + ": " + listProduct2.get(i).getPrice() + "đ");
+        }
+        System.out.println("-------------------------");
+    }
 }
+
+
+
+
+

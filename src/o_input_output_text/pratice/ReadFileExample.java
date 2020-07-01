@@ -25,6 +25,7 @@ public void readFileText(String filePath){
             sum += Integer.parseInt(line);
         }
         br.close();// đóng file
+        System.out.println("Tổng" + sum);
     } catch (FileNotFoundException e) {
         e.printStackTrace();
         System.out.println("File không tồn tại");
@@ -46,15 +47,3 @@ public void readFileText(String filePath){
 
     }
 }
-//    public static void main(String[] args) throws IOException {
-//        Scanner scanner = new Scanner(
-//                Paths.get("D:\\CODEGYM\\C0420G1-Module_2\\install_bst_Binary Search Tree_Read_only\\BST.java"),
-//                "UTF-8");//open file to read
-//        //  int inputInteger ;//= scanner.nextInt();  // đọc từ file D:\CODEGYM\C0420G1-Module_2\inputJavaTutorial.txt
-//        while (scanner.hasNextLine()){
-//            String lineData = scanner.nextLine();
-//            System.out.println("Second line data: "+ lineData);
-//        }
-//        scanner.close();//đóng file lại(đóng luồng lại)
-//
-//    }

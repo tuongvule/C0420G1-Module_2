@@ -26,31 +26,31 @@ public class TestProductManager2 {
                 case 2:
                     pro.editProduct();
                     break;
-            case 3:
-                pro.deleteProduct();
-                break;
-            case 4:
-                pro.displayProduct();
-                break;
-//            case 5:
-//                pro.findProduct();
-//                break;
-//            case 6:
-//                System.out.println("1.Sắp xếp tăng"+
-//                        "2.Sắp xếp giảm");
-//                int choiceTypeSort = Integer.parseInt(scanner.nextLine());
-//                switch (choiceTypeSort){
-//                    case 1:
-//                        pro.sortIncreasePrice();
-//                        break;
-//                    case 2:
-//                        pro.sortDecreasePrice();
-//                        break;
-//                }
-//                break;
-                case 7:
-                    check = false;
+                case 3:
+                     pro.deleteProduct();
                     break;
+                 case 4:
+                    pro.displayProduct();
+                    break;
+                case 5:
+                    pro.findProduct();
+                    break;
+                case 6:
+                    System.out.println("1.Sắp xếp tăng"+
+                        "2.Sắp xếp giảm");
+                    int choiceTypeSort = Integer.parseInt(scanner.nextLine());
+                    switch (choiceTypeSort){
+                        case 1:
+                            pro.sortIncreasePrice();
+                            break;
+                        case 2:
+                            pro.sortDecreasePrice();
+                            break;
+                    }
+                    break;
+                    case 7:
+                        check = false;
+                        break;
             }
 
         }

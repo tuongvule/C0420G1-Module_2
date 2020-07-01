@@ -1,5 +1,8 @@
 package n_debug_xu_ly_ngoai_le.excercise;
 
+import sun.security.util.math.ImmutableIntegerModuloP;
+
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public  class InputSideOfTriangle {
@@ -88,12 +91,17 @@ public  class InputSideOfTriangle {
 
                 inputSideOfTriangle.checkCondition3Sides(side1, side2, side3);
                 System.out.println(inputSideOfTriangle.toString());
+                check =true;
             } catch (IllegalTriangleSideException e) {
                 System.err.println(e.getMessage());
-            }catch (Exception e){
-                e.printStackTrace();
+            }catch (NumberFormatException e){
+                System.out.println("Không nhập chữ");
+                check = false;
+
+            } catch (Exception e){
+                System.out.println("Bạn đã có exception");
             }
-            check =true;
+
         }while (!check);
     }
 }
