@@ -1,6 +1,6 @@
 package furama_resort.models;
 
-public class House extends Services {
+public class House extends Services implements Comparable<House> {
     private String roomStandard;        //tiêu chuẩn phòng
     private String otherFacilities;     //tiện nghi khác
     private int numberOfFloors;         // số tầng nhà
@@ -11,6 +11,18 @@ public class House extends Services {
         this.roomStandard = roomStandard;
         this.otherFacilities = otherFacilities;
         this.numberOfFloors = numberOfFloors;
+    }
+
+    public String getRoomStandard() {
+        return roomStandard;
+    }
+
+    public String getOtherFacilities() {
+        return otherFacilities;
+    }
+
+    public int getNumberOfFloors() {
+        return numberOfFloors;
     }
 
     @Override
@@ -25,5 +37,10 @@ public class House extends Services {
                 ", otherFacilities='" + otherFacilities + '\'' +
                 ", numberOfFloors=" + numberOfFloors+
                 '}';
+    }
+
+    @Override
+    public int compareTo(House o) {
+        return this.getNameService().compareTo(o.getNameService());
     }
 }

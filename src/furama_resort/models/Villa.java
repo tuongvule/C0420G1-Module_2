@@ -1,6 +1,6 @@
 package furama_resort.models;
 
-public class Villa extends Services{
+public class Villa extends Services implements Comparable<Villa>{
     private String roomStandard;        //tiêu chuẩn phòng
     private String otherFacilities;     //tiện nghi khác
     private double poolArea;            // diện tích hồ bơi
@@ -13,6 +13,22 @@ public class Villa extends Services{
         this.otherFacilities = otherFacilities;
         this.poolArea = poolArea;
         this.numberOfFloors = numberOfFloors;
+    }
+
+    public String getRoomStandard() {
+        return roomStandard;
+    }
+
+    public String getOtherFacilities() {
+        return otherFacilities;
+    }
+
+    public double getPoolArea() {
+        return poolArea;
+    }
+
+    public int getNumberOfFloors() {
+        return numberOfFloors;
     }
 
     @Override
@@ -28,5 +44,11 @@ public class Villa extends Services{
                 ", poolArea=" + poolArea +
                 ", numberOfFloors=" + numberOfFloors +
                 '}';
+    }
+
+
+    @Override
+    public int compareTo(Villa o) {
+        return this.getNameService().compareTo(o.getNameService());
     }
 }

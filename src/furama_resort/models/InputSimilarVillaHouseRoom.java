@@ -5,81 +5,97 @@ import java.util.regex.Pattern;
 
 public class InputSimilarVillaHouseRoom {
     static Scanner scanner = new Scanner(System.in);
-    public void inputSimilarVillaHouseRoom(){
-        boolean isvalid = false;
-        //---------------1------------------------------------------
+    static boolean isvalid = false;
+    public static String getId(){
         String id;
         do{
-            System.out.println("Input Villa's ID");
+            System.out.println("Input Id");
             id = scanner.nextLine();
-            isvalid = Pattern.matches("SVVL-[0-9]{4}$",id);
+            isvalid = Pattern.matches("SV(VL|HO|RO)-[0-9]{4}",id);
             if(!isvalid){
-                System.out.println("inputted wrong, please input again");
+                System.out.println("Inputted wrong, please input again");
             }
         }while (!isvalid);
-        isvalid=false;
-        //---------------2-------------------------------------------
+        return id;
+    }
+
+    public static String getNameService(){
         String nameService;
         do{
-            System.out.println("Input name of Service:");
+            System.out.println("Input name of sevice:");
             nameService = scanner.nextLine();
-            isvalid = Pattern.matches("^[A-Z][a-z]+$",nameService);
-            if(isvalid=false){
-                System.out.println("inputted wrong, please input again");
+            isvalid = Pattern.matches("[A-Z][a-z]+",nameService);
+            if(!isvalid){
+                System.out.println("Inputted wrong, please input again");
             }
         }while (!isvalid);
-        isvalid = false;
-        //-----------------3------------------------------------------
+        return nameService;
+    }
+
+    public static double getUsableArea(){
         double usableArea;
+        isvalid=false;
         do {
             System.out.println("Input usable Area: ");
             usableArea = Double.parseDouble(scanner.nextLine());
             if(usableArea>30){
-                isvalid=true;}
-            if(isvalid=false){
-                System.out.println("inputted wrong, please input again");
+                isvalid=true;
             }
+            if(!isvalid){
+                System.out.println("Inputted wrong, please input again");
+            }
+            System.out.println(isvalid);
 //            String check = Double.toString(usableArea);
 //            isvalid = Pattern.matches("([3-9]{1}[0-9]{1})|([0-9]+[0-9]+[0-9]+$)",check);
         }while (!isvalid);
-        isvalid = false;
-        //--------------------4-----------------------------------------------------
-        int rentalCosts;
-        do{
-            System.out.println("Input retal Costs:");
-            rentalCosts = Integer.parseInt(scanner.nextLine());
-            if(rentalCosts>0) {
-                isvalid = true;
-            }
-            if(isvalid=false){
-                System.out.println("inputted wrong, please input again");
-            }
-        }while (!isvalid);
-        isvalid = false;
-        //----------------------5-------------------------------------------------
-        int maxNumberOfPeople;
-        do{
-            System.out.println("Input Max Number Of People: ");
-            maxNumberOfPeople = Integer.parseInt(scanner.nextLine());
-            if(maxNumberOfPeople>0 && maxNumberOfPeople<20){
-                isvalid = true;
-            }
-            if(isvalid=false){
-                System.out.println("inputted wrong, please input again");
-            }
-        }while (!isvalid);
-        isvalid = false;
-        //-------------------6------------------------------------------------------
-        String typeOfRent;
-        do{
-            System.out.println("Input Type Of Rent");
-            typeOfRent = scanner.nextLine();
-            isvalid = Pattern.matches("^[A-Z][a-z]+$",typeOfRent);
-            if(isvalid=false){
-                System.out.println("inputted wrong, please input again");
-            }
-        }while (!isvalid);
-        isvalid = false;
+        return usableArea;
     }
 
+       public static int getRentalCosts(){
+           int rentalCosts;
+           isvalid=false;
+           do{
+               System.out.println("Input retal Costs:");
+               rentalCosts = Integer.parseInt(scanner.nextLine());
+               if(rentalCosts>0) {
+                   isvalid = true;
+               }
+               if(!isvalid){
+                   System.out.println("inputted wrong, please input again");
+               }
+           }while (!isvalid);
+           return rentalCosts;
+       }
+
+       public static int getMaxNumberOfPeople(){
+           int maxNumberOfPeople;
+           isvalid=false;
+           do{
+               System.out.println("Input Max Number Of People: ");
+               maxNumberOfPeople = Integer.parseInt(scanner.nextLine());
+               if(maxNumberOfPeople>0 && maxNumberOfPeople<20){
+                   isvalid = true;
+               }
+               if(!isvalid){
+                   System.out.println("inputted wrong, please input again");
+               }
+           }while (!isvalid);
+           return maxNumberOfPeople;
+       }
+
+
+       public static String getTypeOfRent(){
+           String typeOfRent;
+           isvalid=false;
+           do{
+               System.out.println("Input Type Of Rent");
+               typeOfRent = scanner.nextLine();
+               isvalid = Pattern.matches("^[A-Z][a-z]+$",typeOfRent);
+               if(!isvalid){
+                   System.out.println("inputted wrong, please input again");
+               }
+           }while (!isvalid);
+           return typeOfRent;
+       }
 }
+
