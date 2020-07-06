@@ -1,4 +1,4 @@
-package s_case_study_jame;
+package s_case_study_dictionary;
 
 public class demo_ontap {
     public static void main(String[] args) {
