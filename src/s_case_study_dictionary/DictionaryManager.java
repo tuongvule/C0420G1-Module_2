@@ -6,60 +6,161 @@ import java.util.List;
 import java.util.Scanner;
 
 public class DictionaryManager {
-    static Scanner scanner = new Scanner(System.in);
-    static List <Word> wordList = new ArrayList<>();
+    static final String File_PATH="src\\s_case_study_dictionary\\Dictionary.txt";
+    static List<Dictionary> list=new ArrayList<>();
+    static Scanner scanner=new Scanner(System.in);
     public static void main(String[] args) {
-        displayMainMenu();
+        displayMainDictionary();
     }
-    public static void displayMainMenu(){
-        int action=0;
-//        Word word = new Word("hello","hello","hello","hello","hello","hello");
-//        writeWordObject(word);
-        while (action!=5){
-            System.out.println("Input action that you want to chosse: ");
-            System.out.println("---- Dictionary Maneger -----\n1.Define a word" +
-                    "\n2.Drop a word\n3.Export all word");
-            action = Integer.parseInt(scanner.nextLine());
-            switch (action){
-                case 1:
-                    System.out.println("Input keyword you want to lookup:");
-                    String keyword = scanner.nextLine();
-                    lookup(keyword);
-                case 2:
-
-//                    define();
-                    break;
-                case 3:
-                    drop();
-                    break;
-                case 4:
-                    export();
-                    break;
-                case 5:
-                    break;
-            }
+    public static void displayMainDictionary(){
+        System.out.println("---DICTIONARY---");
+        System.out.println("Enter a word according to the format: (lookup/define/drop/export) word");
+        System.out.print("Action: ");
+        String word=scanner.nextLine();
+        String[] str=word.split(" ");
+        switch (str[0]){
+            case "lookup":
+                lookup(str[1]);
+                displayMainDictionary();
+                break;
+            case "define":
+                define(str[2],str[1]);
+                displayMainDictionary();
+                break;
+            case "drop":
+                drop(str[1]);
+                displayMainDictionary();
+                break;
+            case "export":
+                export(str[1]);
+                break;
         }
     }
-    public static void define(){
-        readWordOject();
-        System.out.println("Input keyword you want to define: ");
-        String keyword = scanner.nextLine();
+    public static void readFile(){
+        boolean bool=true;
+        ObjectInputStream objectInputStream=null;
+        try {
+            objectInputStream=new ObjectInputStream(new FileInputStream(File_PATH));
+            while (bool){
+                Dictionary dictionary=(Dictionary) objectInputStream.readObject();
+                if (dictionary!=null){
+                    list.add(dictionary);
+                }else
+                    bool=false;
+            }
+            objectInputStream.close();
+        } catch (Exception e) {
+            e.getMessage();
+        }
+    }
+    public static void writeFile(String filePath){
+        ObjectOutputStream oos=null;
+        try {
+            oos=new ObjectOutputStream(new FileOutputStream(filePath));
+            for (int i = 0; i < list.size(); i++) {
+                oos.writeObject(list.get(i));
+            }
+            oos.close();
+        } catch (Exception e) {
+            e.getMessage();
+        }
+    }
+    public static void lookup(String word){
+        readFile();
+        if (list.size()==0){
+            System.out.println("Dictionary is empty,please enter new word");
+            addNewWord();
+        }else {
+            for (int i = 0; i < list.size(); i++) {
+                if (word.equals(list.get(i).getAction())) {
+                    System.out.println(list.get(i).toString());
+                    break;
+                } else if (i == list.size() - 1) {
+                    System.out.println("Not word found");
+                    System.out.println("Do you want add the word" +
+                            "\n1.Yes" + "\t2.No");
+                    int choice = Integer.parseInt(scanner.nextLine());
+                    switch (choice) {
+                        case 1:
+                            addNewWord();
+                            break;
+                        case 2:
+                            break;
+                    }
+                }
+            }
+        }
+
+    }
+    public static void addNewWord() {
+        String str;
+        System.out.println("Enter word:");
+        String word=scanner.nextLine();
+        System.out.println("Enter pronoun:");
+        String pronoun=scanner.nextLine();
+        System.out.println("Enter adjective:");
+        String adjective="";
+        str=scanner.nextLine();
+        while (!str.equals("exit")){
+            adjective+=str+"\n";
+            str=scanner.nextLine();
+        }
+        System.out.println("Enter noun:");
+        String noun="";
+        str=scanner.nextLine();
+        while (!str.equals("exit")){
+            adjective+=str+"\n";
+            str=scanner.nextLine();
+        }
+        System.out.println("Enter verb:");
+        String verb="";
+        str=scanner.nextLine();
+        while (!str.equals("exit")){
+            adjective+=str+"\n";
+            str=scanner.nextLine();
+        }
+        System.out.println("Enter synonymous:");
+        String synonymous="";
+        str=scanner.nextLine();
+        while (!str.equals("exit")){
+            adjective+=str+"\n";
+            str=scanner.nextLine();
+        }
+        Dictionary dictionary=new Dictionary(word,pronoun,adjective,noun,verb,synonymous);
+        list.add(dictionary);
+        writeFile(File_PATH);
+        list.clear();
+    }
+    public static void define(String keyword,String key){
+        readFile();
         List<String> listString=new ArrayList<>();
-        Word word = null;
-        String noun = "";
-        String definition = "";
         String string="";
+        String definition="";
+        String noun="";
         String verb="";
         String synonymous="";
-        for (int i = 0; i <wordList.size() ; i++) {
-            if(keyword.equals(wordList.get(i).getKeyword())){
-                word = wordList.get(i);
-                wordList.remove(i);
+        Dictionary word = null;
+        for (int i = 0; i < list.size() ; i++) {
+//            System.out.println(list.get(i).toString());
+            if (keyword.equals(list.get(i).getAction())) {
+                word = list.get(i);
+                list.remove(i);
             }
         }
-        System.out.println("Input property you want to define:[keyword/pronunciation/noun/adjective/verb/synonymous]");
-        String propertyDefine =scanner.nextLine();
-        switch (propertyDefine){
+        switch (key){
+            case "adjective":
+                System.out.println("Enter more definitions (end by the word: exit):");
+                string=scanner.nextLine();
+                while (!string.equals("exit")){
+                    listString.add(string);
+                    string=scanner.nextLine();
+                }
+                for (int j = 0; j < listString.size() ; j++) {
+                    definition+=listString.get(j)+"\n";
+                }
+                word.setAdjective(definition);
+                list.add(word);
+                break;
             case "noun":
                 System.out.println("Enter more noun (end by the word: exit):");
                 string=scanner.nextLine();
@@ -71,100 +172,63 @@ public class DictionaryManager {
                     noun+=listString.get(j)+"\n";
                 }
                 word.setNoun(noun);
-                wordList.add(word);
-                break;
-            case "adjective":
+                list.add(word);
                 break;
             case "verb":
+                System.out.println("Enter more verb (end by the word: exit):");
+                while (!string.equals("exit")){
+                    listString.add(string);
+                    string=scanner.nextLine();
+                }
+                for (int j = 0; j < listString.size() ; j++) {
+                    verb+=listString.get(j)+"\n";
+                }
+                word.setVerb(verb);
+                list.add(word);
                 break;
             case "synonymous":
-                break;
-
-        }
-//
-//        writeWordObject(word1);
-    }
-    public static void drop(){
-
-    }
-    public static void export(){
-
-    }
-    public static void lookup(String word){
-        readWordOject();
-        if(wordList==null){
-            System.out.println("Dictionary is empty, please input new word");
-            addWord();
-        }else {
-            for (int i = 0; i < wordList.size(); i++) {
-                if(word.equals(wordList.get(i).getKeyword())){
-                    System.out.println("The word you want to lookup is: ");
-                    System.out.println(wordList.get(i).toString());
-                    break;
-                }  else if(i==wordList.size()-1){
-                    System.out.println("The word you want to find does not exist");
-                    System.out.println("Do you want to add this word into dictionary\n1.Yes\n2.No");
-                    int choice = Integer.parseInt(scanner.nextLine());
-                    switch (choice){
-                        case 1:
-                            addWord();
-                            break;
-                        case 2:
-                            break;
-                    }
+                System.out.println("Enter more synonymous:");
+                while (!string.equals("exit")){
+                    listString.add(string);
+                    string=scanner.nextLine();
                 }
+                for (int j = 0; j < listString.size() ; j++) {
+                    synonymous+=listString.get(j)+"\n";
+                }
+                word.setSynonymous(synonymous);
+                list.add(word);
+                break;
+        }
+
+        writeFile(File_PATH);
+        list.clear();
+    }
+
+    public static void drop(String word){
+        readFile();
+        for (int i = 0; i < list.size(); i++) {
+            if (word.equals(list.get(i).getAction())) {
+                list.remove(i);
+                System.out.println("@"+word+" dropped");
+            } else if (i == list.size() - 1) {
+                System.out.println("Not word found");
             }
         }
+        writeFile(File_PATH);
+        list.clear();
     }
-    public static void writeWordObject(Word word){
-        ObjectOutputStream objectOutputStream = null;
+    public static void export(String filePath){
+        readFile();
+        File file = new File(filePath);
         try {
-            objectOutputStream = new ObjectOutputStream(new FileOutputStream("src\\s_case_study_dictionary\\words.txt"));
-
-                objectOutputStream.writeObject(word);
-
-            objectOutputStream.close();
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            if (file.createNewFile()){
+                System.out.println("Exporting 10%..20%..30%..40%..50%..60%..70%..80%..90%..Done!");
+            }else
+                System.out.println("\"File already exists..\"");
         } catch (IOException e) {
             e.printStackTrace();
         }
+        writeFile(filePath);
     }
-    public static void readWordOject(){
-        boolean check = true;
-        List <Word> wordList = new ArrayList<>();
-        ObjectInputStream ois= null;
-        try {
-            ois = new ObjectInputStream(new FileInputStream("src\\s_case_study_dictionary\\words.txt"));
-            while (check){
-                Word word = (Word) ois.readObject();
-                if(word!=null){
-                    wordList.add(word);
-                }
-                else {
-                    check= false;
-                }
-            }
-            ois.close();
 
-        } catch (Exception e) {
-            e.getMessage();
-        }
-    }
-    public static void addWord(){
-        System.out.println("Input keyword");
-        String keyword = scanner.nextLine();
-        System.out.println("Input pronunciation");
-        String pronunciation = scanner.nextLine();
-        System.out.println("Input noun");
-        String noun = scanner.nextLine();
-        System.out.println("Input adjective");
-        String adjective = scanner.nextLine();
-        System.out.println("Input verb");
-        String verb = scanner.nextLine();
-        System.out.println("Input synonymous");
-        String synonymous = scanner.nextLine();
-        Word word = new Word(keyword, pronunciation, noun, adjective, verb, synonymous);
-    }
 }
